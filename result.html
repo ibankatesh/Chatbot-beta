@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extraction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .download-button, .home-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .download-button button, .home-button a {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .download-button button:hover, .home-button a:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .download-button button, .home-button a {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Extracted Information</h1>
+
+    <!-- Add home button -->
+    <div class="home-button">
+        <a href="/">Home</a>
+    </div>
+
+    <!-- Add download buttons -->
+    <div class="download-button">
+        <form action="/download" method="post">
+            <input type="hidden" name="data" value="{{ data }}">
+            <button type="submit" name="format" value="csv">Download CSV</button>
+            <button type="submit" name="format" value="pdf">Download PDF</button>
+        </form>
+    </div>
+
+    <!-- Render tables -->
+    {% for table in tables %}
+        {{ table | safe }}
+    {% endfor %}
+</body>
+</html>
